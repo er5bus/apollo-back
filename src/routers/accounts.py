@@ -1,19 +1,21 @@
-from fastapi import Depends, Response
+from fastapi import Depends, Response, Request
 from fastapi_users import FastAPIUsers
 from fastapi_users.authentication import JWTAuthentication
 
 from ..config import settings
-from .models import user_db, User, UserCreate, UserUpdate, UserDB
+from ..models.users import user_db, User
+from ..schemas.users import UserOut, UserInCreate, UserInUpdate
+
 
 jwt_authentication = JWTAuthentication(secret=settings.jwt_secret, lifetime_seconds=3600, tokenUrl="/auth/login")
 
 accounts = FastAPIUsers(
     db=user_db,
     auth_backends=[jwt_authentication],
-    user_model=User,
-    user_create_model=UserCreate,
-    user_update_model=UserUpdate,
-    user_db_model=UserDB,
+    user_model=UserOut,
+    user_create_model=UserInCreate,
+    user_update_model=UserInUpdate,
+    user_db_model=User,
 )
 
 authrouter = accounts.get_auth_router(jwt_authentication)

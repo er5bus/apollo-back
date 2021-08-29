@@ -9,8 +9,3 @@ class BaseSettings(PydanticBaseSettings):
     jwt_secret: str
     reset_password_secret: str
     db_url: PostgresDsn
-
-    model_directories: List[str] = [
-        "app.accounts.models",
-        "aerich.models"
-    ]

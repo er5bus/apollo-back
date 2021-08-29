@@ -24,12 +24,18 @@ services:
       postgres:
         condition: service_healthy
     volumes:
-      - .:/app/
+      - .:/src/
     env_file:
       - ./.env
     ports:
       - "5000:8080"
     restart: on-failure
+
+  adminer:
+    image: adminer
+    restart: on-failure:5
+    ports:
+      - 8080:8080
 
 volumes:
   container-data:

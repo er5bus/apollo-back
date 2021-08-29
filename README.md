@@ -52,12 +52,6 @@ $ aerich init-db # inside the container
 $ ./bin/createsuperuser  # inside the container
 ```
 
-**(3. Optional: Generate fake data)**
-
-```bash
-$ ./bin/fakedata  # inside the container
-```
-
 ## Migrations
 
 1. Create migrations after initializing new models / changing existing models
