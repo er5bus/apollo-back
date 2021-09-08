@@ -26,7 +26,9 @@ async def _paginate_nested_relations(model: DeclarativeMeta, model_mapper: Mappe
     subqueries = []
     nested_rel = {}
     for key, column in model_mapper.relationships.items():
-        subquery_model = column.argument()
+        subquery_model =  column.argument() if callable(column.argument) else column.argument
+        if not isinstance(subquery_model, DeclarativeMeta):
+            continue
         subquery_columns = subquery_model.__table__.columns.keys()
         subquery_selected_columns = [ getattr(subquery_model, col).label(f'{key}.{col}') for col in subquery_columns]
         nested_rel[key] = subquery_columns
@@ -35,9 +37,11 @@ async def _paginate_nested_relations(model: DeclarativeMeta, model_mapper: Mappe
 
     result = []
     async for row in database.iterate(query=query):
-        result.append({ **row, **{ key: { col: row.get(f'{key}.{col}', None) for col in columns } for key, columns  in nested_rel.items()}})
+        nested_row = {}
+        if nested_rel:
+            nested_row = { key: { col: row.get(f'{key}.{col}', None) for col in columns } for key, columns  in nested_rel.items()}
+        result.append({ **row, **nested_row })
     return result
-
 
 
 async def find_one(model: DeclarativeMeta, pk_param: int, pk_attr: str = 'id'):
@@ -59,7 +63,9 @@ async def _fetch_one_nested_relations(model: DeclarativeMeta, model_mapper: Mapp
     subqueries = []
     nested_rel = {}
     for key, column in model_mapper.relationships.items():
-        subquery_model = column.argument()
+        subquery_model =  column.argument() if callable(column.argument) else column.argument
+        if not isinstance(subquery_model, DeclarativeMeta):
+            continue
         subquery_columns = subquery_model.__table__.columns.keys()
         subquery_selected_columns = [ getattr(subquery_model, col).label(f'{key}.{col}') for col in subquery_columns]
         nested_rel[key] = subquery_columns

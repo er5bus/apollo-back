@@ -1,8 +1,6 @@
 from typing import List
 from fastapi import APIRouter, status, Response
 
-from sqlalchemy.sql import select
-
 from src.config.db import database
 from ..models.classes import Classe, Section, Level
 from ..schemas.classes import ClasseOut, ClasseIn, SectionIn, SectionOut, LevelOut, LevelIn

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.routers import accounts, classes
+from src.routers import accounts, classes, posts
 
 from .config.db import database
 from .config import settings
@@ -41,6 +41,10 @@ def create_app() -> FastAPI:
     app.include_router(classes.section_router)
     app.include_router(classes.classe_router)
     app.include_router(classes.level_router)
+
+    app.include_router(posts.comment_router)
+    app.include_router(posts.post_router)
+    app.include_router(posts.page_router)
 
 
     @app.on_event("startup")
