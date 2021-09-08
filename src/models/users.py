@@ -3,9 +3,9 @@ import enum
 
 from sqlalchemy import Column, String, Integer, Date, DateTime, Text, Enum, ForeignKey
 from sqlalchemy.orm import relationship
-from fastapi_users.db import SQLAlchemyBaseUserTable, SQLAlchemyUserDatabase
+from fastapi_users.db import SQLAlchemyBaseUserTable
 
-from src.config.db import Base, database
+from src.config.database import Base
 
 
 class UserType(enum.Enum):
@@ -50,19 +50,15 @@ class Modules:
     """ App modules """
     CLASSE= 1
     COURSE=2
-    QUIZ= 4
-    HOMEWORK= 8
-    PASS_QUIZE= 16
-    PASS_HOMEWORK= 32
+    QUIZ=4
+    HOMEWORK=8
+    PASS_QUIZE=16
+    PASS_HOMEWORK=32
 
 
 class Permission:
     """ Perissions for each module """
-    CREATE= 1
-    UPDATE= 2
-    DELETE= 4
-    READ= 8
-
-
-users = User.__table__
-user_db = SQLAlchemyUserDatabase(User, database, users)
+    CREATE=1
+    UPDATE=2
+    DELETE=4
+    READ=8

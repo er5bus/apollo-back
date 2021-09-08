@@ -3,9 +3,7 @@ from sqlalchemy import Column, String, Integer, DateTime, Text, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.hybrid import hybrid_property
 
-
-
-from src.config.db import Base
+from src.config.database import Base
 
 
 class Section(Base):
@@ -28,10 +26,10 @@ class Classe(Base):
     description = Column(String)
 
     section_id = Column(Integer(), ForeignKey('sections.id'))
-    section = relationship('Section', foreign_keys=[section_id], lazy='joined', primaryjoin="Classe.section_id==Section.id", backref='classes')
+    section = relationship('Section', foreign_keys=[section_id], lazy='joined', primaryjoin="Classe.section_id==Section.id")
 
     level_id = Column(Integer(), ForeignKey('levels.id'))
-    level = relationship('Level', foreign_keys=[level_id], lazy='joined', primaryjoin="Classe.level_id==Level.id", backref='classes')
+    level = relationship('Level', foreign_keys=[level_id], lazy='joined', primaryjoin="Classe.level_id==Level.id")
 
     #posts = relationship('Post', backref='classe', lazy='dynamic')
     #homeworks = relationship('Homework', backref='classe', lazy='dynamic')

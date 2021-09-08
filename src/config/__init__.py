@@ -1,7 +1,9 @@
 import os
 
-from . import development, production
+from .settings import settings as env_settings
 
-env = os.getenv('ENVIRONMENT', 'DEV')
+DEFAULT_ENV = 'DEV'
 
-settings = development.settings if env == "DEV" else production.settings
+env = os.getenv('ENVIRONMENT', DEFAULT_ENV)
+
+settings = env_settings.get(env, DEFAULT_ENV)

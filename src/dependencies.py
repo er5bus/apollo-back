@@ -1,7 +1,4 @@
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from sqlalchemy.orm import sessionmaker
+from src.utils.auth import user_manager
 
-
-async def get_session() -> AsyncSession:
-    async with async_session() as session:
-        yield session
+current_active_user = user_manager.current_user(active=True)
+current_active_superuser = user_manager.current_user(active=True, superuser=True)
