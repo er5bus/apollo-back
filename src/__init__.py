@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -57,3 +58,5 @@ def create_app() -> FastAPI:
         await database.disconnect()
 
     return app
+=======
+>>>>>>> 512606cf3862edfb72701c57401e2db4237bb502

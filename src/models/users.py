@@ -3,7 +3,13 @@ import enum
 from sqlalchemy import Column, String, Integer, Date, DateTime, Text, Enum, ForeignKey
 from sqlalchemy.orm import relationship
 from fastapi_users.db import SQLAlchemyBaseUserTable
+<<<<<<< HEAD
 from src.config.db import Base
+=======
+
+from src.config.database import Base
+
+>>>>>>> 512606cf3862edfb72701c57401e2db4237bb502
 
 class UserType(enum.Enum):
     STUDENT = 1
@@ -45,6 +51,10 @@ class Modules:
     HOMEWORK=8
     PASS_QUIZE=16
     PASS_HOMEWORK=32
+<<<<<<< HEAD
+=======
+
+>>>>>>> 512606cf3862edfb72701c57401e2db4237bb502
 
 class Permission:
     """ Perissions for each module """

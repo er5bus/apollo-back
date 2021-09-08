@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from fastapi import Depends, Response, Request
 from fastapi_users import FastAPIUsers
 from fastapi_users.db import SQLAlchemyUserDatabase
@@ -26,3 +27,14 @@ usersrouter = accounts.get_users_router()
 @authrouter.post("/refresh-token")
 async def refresh_token(response: Response, user=Depends(accounts.get_current_active_user)):
     return await jwt_authentication.get_login_response(user, response)
+=======
+from src.config import settings
+from src.utils.auth import jwt_authentication, user_manager
+
+
+authrouter = user_manager.get_auth_router(jwt_authentication)
+authresetpasswordrouter = user_manager.get_reset_password_router(
+    reset_password_token_secret=settings.reset_password_secret)
+registerrouter = user_manager.get_register_router()
+usersrouter = user_manager.get_users_router()
+>>>>>>> 512606cf3862edfb72701c57401e2db4237bb502

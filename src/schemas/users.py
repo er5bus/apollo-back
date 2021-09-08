@@ -9,5 +9,9 @@ class UserInCreate(models.BaseUserCreate):
 class UserInUpdate(UserOut, models.BaseUserUpdate):
     pass
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 512606cf3862edfb72701c57401e2db4237bb502
 class BaseUser(UserOut, models.BaseUserDB):
     pass

@@ -3,7 +3,7 @@ from sqlalchemy import Column, String, Integer, Boolean, DateTime, Text, Foreign
 from sqlalchemy.orm import relationship
 
 
-from src.config.db import Base
+from src.config.database import Base
 
 
 class Quiz(Base):

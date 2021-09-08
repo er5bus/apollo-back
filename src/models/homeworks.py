@@ -3,7 +3,7 @@ from sqlalchemy import Column, String, Integer, DateTime, Text, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-from src.config.db import Base
+from src.config.database import Base
 
 
 class Homework(Base):
