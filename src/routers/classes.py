@@ -1,16 +1,10 @@
 from fastapi import APIRouter, Depends
 from typing import List
 
-<<<<<<< HEAD
-from src.config.db import database
-from ..models.classes import Classe, Section, Level
-from ..schemas.classes import ClasseOut, ClasseIn, SectionIn, SectionOut, LevelOut, LevelIn
-=======
 from src.utils.crud_router import include_generic_collection_document_router
 from src.dependencies import current_active_user
 from src.services.classes import SectionService, LevelService, ClasseService
 
->>>>>>> 512606cf3862edfb72701c57401e2db4237bb502
 
 dependencies: List[Depends] = [Depends(current_active_user)]
 

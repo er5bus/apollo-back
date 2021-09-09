@@ -25,26 +25,26 @@ class BaseService:
         return await self.dao_obj.paginate(skip, limit)
 
     async def find_one(self, param_id: int):
-        """ Get one obj """
+        """ Get one object """
         obj = await self.dao_obj.find_one(param_id)
         if obj is None:
             raise_not_found_exception()
         return obj
 
     async def delete_one(self, param_id: int):
-        """ Get one section """
+        """ Get one object """
         result = await self.dao_obj.delete_one(param_id)
         if result is False:
             raise_not_found_exception()
 
     async def update_one(self, obj: object, param_id: int):
-        """ Update one section """
+        """ Update one object """
         result = await self.dao_obj.update_one(obj, param_id)
         if result is None:
             raise_not_found_exception()
 
     async def insert_one(self, obj: object):
-        """ Create a classe section """
+        """ Create a classe object """
         result = await self.dao_obj.insert_one(obj)
         if result is None:
             raise_unprocessable_entity_exception()
