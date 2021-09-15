@@ -56,12 +56,12 @@ $ ./bin/createsuperuser  # inside the container
 
 1. Create migrations after initializing new models / changing existing models
 ```bash
-aerich migrate # inside the container
+alembic revision --autogenerate # inside the container
 ```
 
 2. Apply migrations
 ```bash
-aerich upgrade  # inside the container
+alembic upgrade head  # inside the container
 ```
 
 Check 0.0.0.0:5000 on your browser!

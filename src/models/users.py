@@ -1,6 +1,5 @@
 from datetime import datetime
 import enum
-
 from sqlalchemy import Column, String, Integer, Date, DateTime, Text, Enum, ForeignKey
 from sqlalchemy.orm import relationship
 from fastapi_users.db import SQLAlchemyBaseUserTable
@@ -13,19 +12,15 @@ class UserType(enum.Enum):
     ADMIN = 2
     TEACHER = 3
 
-
 class User(Base, SQLAlchemyBaseUserTable):
     __tablename__ = 'users'
     user_type = Column(Integer, Enum(UserType))
     permissions = Column(Integer)
     modules = Column(Integer)
-
     role_id = Column(Integer, ForeignKey('roles.id'))
     role = relationship("Role", foreign_keys=[role_id])
-
     profile_id = Column(Integer, ForeignKey('profiles.id'))
     profile = relationship("Profile", backref='account', foreign_keys=[profile_id])
-
 
 class Profile(Base):
     __tablename__ = 'profiles'
@@ -37,14 +32,12 @@ class Profile(Base):
     address = Column(Text)
     member_since = Column(DateTime, default=datetime.utcnow)
 
-
 class Role(Base):
     __tablename__ = 'roles'
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
     permissions = Column(Integer)
     modules = Column(Integer)
-
 
 class Modules:
     """ App modules """
@@ -54,7 +47,6 @@ class Modules:
     HOMEWORK=8
     PASS_QUIZE=16
     PASS_HOMEWORK=32
-
 
 class Permission:
     """ Perissions for each module """

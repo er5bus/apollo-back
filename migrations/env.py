@@ -18,7 +18,7 @@ fileConfig(config.config_file_name)
 base_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 sys.path.append(base_dir)
 from src.models import * # This helps alembic autogeneration
-from src.config.db import Base
+from src.config.database import Base
 target_metadata = Base.metadata
 
 def get_url():
